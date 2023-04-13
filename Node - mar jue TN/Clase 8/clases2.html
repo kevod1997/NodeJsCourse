@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Clases Continuacion</h1>
+
+<script>
+    class Person{
+        static cantidadInstancias = 0
+
+        static sumarInstancia(){
+            //this.cantidadInstancias++//SI funciono -> this hace referencia a la clase Person
+            Person.cantidadInstancias++
+        }
+
+        constructor(nombre, apellido, edad, email){
+            this.nombre = nombre
+            this.apellido = apellido
+            this.edad = edad
+            this.email = email
+
+            //this.sumarInstancia()//NO funciono -> this hace referencia a la instancia
+            Person.sumarInstancia()
+        }
+
+        login(){
+            return `${this.nombre} estas logueado`
+        }
+    }
+
+    class User extends Person{
+        constructor(nombre, apellido, edad, email, tipoDeCuenta){
+            // this.nombre = nombre
+            // this.apellido = apellido
+            // this.edad = edad
+            // this.email = email
+            super(nombre, apellido, edad, email)
+            this.tipoDeCuenta = tipoDeCuenta
+        }
+
+        // login(){
+        //     return `${this.nombre} estas logueado`
+        // }
+    }
+
+    class Admin extends Person{
+        constructor(nombre, apellido, edad, email){
+            // this.nombre = nombre
+            // this.apellido = apellido
+            // this.edad = edad
+            // this.email = email
+            super(nombre, apellido, edad, email)
+            this.admin = true
+        }
+
+        login(){
+            return `${this.nombre} estas logueado`
+        }
+    }
+
+
+    const user = new User ("Juan", "Perez", 36, "juancito@mail.com", "free")
+
+    const admin = new Admin("Maria", "Gomez", 45, "maria@mail.com")
+
+    user.login()//Login es un metodo de la instancia
+
+    //User.login()//NO existe en la clase
+</script>
+</body>
+</html>

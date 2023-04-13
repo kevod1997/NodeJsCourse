@@ -1,0 +1,33 @@
+<section>
+    <h1>Hola {{nombre}} {{{html}}}</h1>
+
+
+    <p>Direccion  {{direccion.calle}} {{direccion.numero}}, {{direccion.ciudad}} </p>
+
+    {{#with direccion}}
+    <p>Direccion {{calle}} {{numero}}, {{ciudad}}</p>
+    {{/with}}
+
+    {{#if mensaje}}
+    <p>{{mensaje}}</p>
+    {{/if}}
+
+    {{#unless mensaje}}
+    <p>No hay mensaje</p>
+    {{/unless}}
+    <ul>
+        {{#each colores}}
+        <li>{{this}}</li>
+        {{/each}}
+
+    </ul>
+
+    {{#each users}}
+        <div class="card">
+            <h3>{{this.name}}</h3>
+            <p>{{this.email}}</p>
+            <a href="/perfil/{{this.id}}">Ver Perfil</a>
+        </div>
+    {{/each}}
+
+</section>

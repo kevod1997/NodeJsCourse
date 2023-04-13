@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Clases</h1>
+    <p> Es una "plantilla" para generar objetos</p>
+
+    <h2>Instancias</h2>
+    <p> Son los objetos generados a partir de una clase en particular</p>
+
+    <h2>Metodos</h2>
+    <p> Son funciones asociadas a un objeto </p>
+
+    <h2>this</h2>
+    <p> Es una palabra reservada que hace referencia al propio objeto en el que estoy </p>
+
+    <h2>Visibilidad</h2>
+    <p>
+        Public -> accesible desde fuera 
+                Protected -> accesible desde dentro y desde clases padres o hijas
+        Private -> accesible solo desde dentro (this) por la propia clase
+    </p>
+
+    <h3>TypeScript</h3>
+    <p> SuperSet de JS -> Necesita ser transpilado a JS para funcionar </p>
+
+
+<script>
+    //funcionX( {inicio: 150, final: 210} )
+
+    const usuario1 = {
+        nombre: "Carlos Perez",
+        nombreUsuario: "carlitos.genio",
+        email: "carlitos@gmail.com",
+        contraseña: "asdasd",
+        saludar: function(){
+            console.log("Hola soy " + this.nombre)
+        }
+    }
+
+    const usuario2 = {
+        nombre: "Juan Dominguez",
+        nombreUsuario: "juancho.genio",
+        email: "juancho@gmail.com",
+        contraseña: "asdasd",
+        saludar: function(){
+            console.log("Hola soy " + this.nombre)
+        }
+    }
+
+
+    class Usuario {
+        #nombre
+
+        constructor(nombre, nombreUsuario, email, contraseña){
+            //this.nombre = nombre
+            this.#nombre = nombre //No podria porque es privada
+            this.nombreUsuario = nombreUsuario
+            this.email = email
+            this.contraseña = contraseña
+        }
+
+        saludar(){
+            console.log("Hola soy " + this.nombre)
+        }
+
+        //Devolver un valor privado
+        get nombre(){//Tiene que ser tratada como propiedad / get -> obtener
+            return this.#nombre
+        }
+
+        //Devolver un valor dinamico/calculado
+        get saludo(){
+            return "Hola soy "+this.#nombre
+        }
+
+        get posts(){
+            //Buscar en la DDBB los posteos de ese usuario y retornarlos
+        }
+
+        //Modificar un valor privado
+        set nombre(dato){//Tiene que ser tratada como propiedad / set -> guardar un nuevo valor
+            //VALIDAR EL NUEVO NOMBRE
+            this.#nombre = dato
+        }
+
+        //Modificar un valor calculado
+
+
+        /*
+        Cuando uso propiedades privadas 
+            1. no expongo nada de ese valor (ni ver ni modificar / ni get ni set)
+            2. solo se puede ver (solo get)
+            3. ademas de ver (get) tambien modificar, pero con validaciones (set)
+        */
+    }
+    //Usuario.constructor = function(){}
+
+    //1. Se genera un objeto vacio  2. Se heredan los metodos 3.Se ejecuta el metodo contructor
+    const usuario3 = new Usuario("Daniela Gomez", "dani", "dani@gmail.com", "asd")
+    
+    // const usuario3 = {
+    //     nombre: "Daniela Gomez",
+    //     nombreUsuario: "dani",
+    //     email: "dani@gmail.com",
+    //     contraseña: "asdasd"
+    // }
+
+    // usuario3.__proto__ = {
+    //     saludar: function(){
+    //         console.log("Hola soy " + this.nombre)
+    //     }
+    // }
+    // usuario3.__proto__ = User.prototype =   {
+    //                                             saludar: function(){
+    //                                                 console.log("Hola soy " + this.nombre)
+    //                                             }
+    //                                         }
+
+
+    // usuario3.__proto__.__proto__ = {
+    //     toString: function(){}
+    // }
+
+
+    // usuario3.saludar()
+    // usuario3.toString()
+    
+    // { 
+    //     constructor: function(){
+    //         this
+    //     }  
+    // }
+
+
+</script>
+</body>
+</html>

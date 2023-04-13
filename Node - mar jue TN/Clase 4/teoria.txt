@@ -1,0 +1,107 @@
+DOTENV -> libreria que me permite tener archivos de configuracion basica. Alli almacenamos info necesaria para nuestro proyecto como por ejemplo: la info de la BBDD, la claves necesarias, secretKey, directorios publicos
+
+Mongo
+INstructivo instalacion y configuracion
+https://docs.google.com/document/d/e/2PACX-1vRDz40X40VetTW2qf44mZPUpkh7HbG2YiDdZjX6u8qSaiIdVvacHaM0jtl5hN1jLA/pub
+
+
+C:\Program Files\MongoDB\Server\6.0\bin
+
+MongoDriver 
+mongod --dbpath "RUTA A LA CARPETA PARA USAR"
+mongod --dbpath "./db"
+mongod --dbpath "./db" --port 27018
+
+
+mongodb://127.0.0.1:27017
+mongodb://localhost:27017
+
+
+MongoD es mi servidor de BBDD -> tiene varias BBDD 
+BBDD -> es un conjunto de colecciones 
+Coleccion -> es un conjunto de documentos 
+Documento -> es un conjunto de campos y valores 
+
+
+{
+    proyecto: { //database
+        users: [ //colection
+            {
+                nombre: "Juan",
+                email: "juancito@gmail.com",
+                edad: 54
+            },
+            {
+                nombre: "Maria",
+                email: "maria@gmail.com",
+                edad: 36
+            },
+            {
+                nombre: "Tomas",
+                email: "tomas@gmail.com",
+                edad: 28
+            }
+        ]
+    }
+}
+
+
+MongoSh -> MongoShell
+
+db -> en que db estoy
+
+use proyecto -> cambia a db proyecto 
+
+db.createCollection("products") -> crea la coleccion de products
+
+
+db.COLECTION 
+
+db.users.insertOne({})
+
+db.users.insertOne({
+    name: "Juan",
+    email: "juancito@gmail.com",
+    age: 54
+})
+
+db.users.insertMany([
+    {
+        name: "Maria",
+        email: "maria@gmail.com",
+        age: 36
+    },
+    {
+        name: "Tomas",
+        email: "tomas@gmail.com",
+        age: 28
+    }
+])
+
+
+
+db.users.find() -> todos los documentos en un array
+db.users.findOne() -> un documento en un objeto
+
+Busqueda por identidad ===
+db.users.find({email: "tomas@gmail.com"})
+
+db.users.find({email: "tomas@gmail.com", age: 28})
+db.users.find({email: "Tomas@gmail.com", age: 28})
+db.users.find({email: "tomas@gmail.com", age: 30})
+
+db.users.find( { age: {$gt: 40} } ) //   >
+db.users.find( { age: {$gte: 40} } ) //  >=
+db.users.find( { age: {$lt: 40} } ) //  <
+db.users.find( { age: {$lte: 40} } ) //  <=
+db.users.find( { age: {$eq: 40} } ) //  ===
+
+// RegExp usango el flag de Insensitive
+db.users.find({email: /Tomas@gmail.com/i })
+db.users.find({email: /@gmail.com/i })
+
+
+         timestamp  id cliente   id process    random + autoincrement
+ObjectId("6407dab0  68fa52       b7db          837a91")
+ObjectId("6407db54  68fa52       b7db          837a92")
+ObjectId("6407db54  68fa52       b7db          837a93")
